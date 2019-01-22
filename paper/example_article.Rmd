@@ -11,7 +11,6 @@ thanks: "The paper's revision history and the materials needed to reproduce its 
 author:
 - name: Frederick Solt
   affiliation: University of Iowa
-#
 abstract: "Here's where you write 100 to 250 words, depending on the journal, that describe your objective, methods, results, and conclusion."
 keywords: "these, always seem silly, to me, given google, but regardless"
 date: "`r format(Sys.time(), '%B %d, %Y')`"
@@ -44,7 +43,7 @@ summary(mtcars)
 
 You can also embed plots like this dot-and-whisker plot [see @Solt2015c]:
 
-```{r fig.width = 7, fig.height = 4, warning = FALSE, message = FALSE, echo=FALSE}
+```{r dotwhisker_plot, fig.width = 7, fig.height = 4, warning = FALSE, message = FALSE, echo=FALSE}
 m1 <- lm(mpg ~ wt + cyl + disp + gear, data = mtcars)
 m2 <- update(m1, . ~ . + hp) # add another predictor
 m3 <- update(m2, . ~ . + am) # and another 
