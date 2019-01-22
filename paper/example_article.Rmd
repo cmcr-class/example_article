@@ -1,0 +1,87 @@
+---
+output: 
+  pdf_document:
+    citation_package: natbib
+    keep_tex: true
+    fig_caption: true
+    latex_engine: pdflatex
+    template: svm-latex-ms2.tex
+title: "An Example Article"
+thanks: "The paper's revision history and the materials needed to reproduce its analyses can be found [on Github here](http://github.com/fsolt/example_article). Corresponding author: [frederick-solt@uiowa.edu](mailto:frederick-solt@uiowa.edu). Current version: `r format(Sys.time(), '%B %d, %Y')`."
+author:
+- name: Frederick Solt
+  affiliation: University of Iowa
+#
+abstract: "Here's where you write 100 to 250 words, depending on the journal, that describe your objective, methods, results, and conclusion."
+keywords: "these, always seem silly, to me, given google, but regardless"
+date: "`r format(Sys.time(), '%B %d, %Y')`"
+fontsize: 11pt
+spacing: single
+bibliography: \dummy{`r file.path(getwd(), 'example_article')`}
+biblio-style: apsr
+citecolor: black
+endnote: no
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+# load all the packages you will use below 
+library(dotwhisker)
+library(tidyverse)
+```
+
+# Introduction to RMarkdown
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+
+```{r mtcars}
+summary(mtcars)
+```
+
+## Including Plots
+
+You can also embed plots like this dot-and-whisker plot [see @Solt2015c]:
+
+```{r fig.width = 7, fig.height = 4, warning = FALSE, message = FALSE, echo=FALSE}
+m1 <- lm(mpg ~ wt + cyl + disp + gear, data = mtcars)
+m2 <- update(m1, . ~ . + hp) # add another predictor
+m3 <- update(m2, . ~ . + am) # and another 
+
+dwplot(list(m1, m2, m3),
+       vline = geom_vline(xintercept = 0, colour = "grey60", linetype = 2)) %>% # plot line at zero _behind_ coefs
+    relabel_predictors(c(wt = "Weight",                       
+                         cyl = "Cylinders", 
+                         disp = "Displacement", 
+                         hp = "Horsepower", 
+                         gear = "Gears", 
+                         am = "Manual")) +
+     theme_bw() + xlab("Coefficient Estimate") + ylab("") +
+     geom_vline(xintercept = 0, colour = "grey60", linetype = 2) +
+     ggtitle("Predicting Gas Mileage") +
+     theme(plot.title = element_text(face="bold"),
+           legend.position = c(0.007, 0.01),
+           legend.justification = c(0, 0), 
+           legend.background = element_rect(colour="grey80"),
+           legend.title = element_blank()) 
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+
+## Citations
+Want to cite something?
+
+1. Find your cite key in your bib file.
+1. Put an @ before it, like @Solt2017, or whatever it is
+1. @Solt2017 creates an in-text citation
+1. [@Herndon2014] creates a parenthetical citation
+
+As @Gelman2014 note, the garden of forking paths can pose problems for researchers even when they are acting in good faith.
+
+## Other Common Things
+
+> This will create a block quote, if you want one.
+
+Dropping a footnote is easy.^[See? Not hard at all.]
+
