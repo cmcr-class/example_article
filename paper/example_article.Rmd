@@ -2,7 +2,7 @@
 output: 
   pdf_document:
     citation_package: natbib
-    keep_tex: true
+    keep_tex: false
     fig_caption: true
     latex_engine: pdflatex
     template: svm-latex-ms2.tex
@@ -19,6 +19,7 @@ spacing: single
 bibliography: \dummy{`r file.path(getwd(), 'example_article')`}
 biblio-style: apsr
 citecolor: black
+linkcolor: black
 endnote: no
 ---
 
@@ -39,11 +40,15 @@ When you click the **Knit** button a document will be generated that includes bo
 summary(mtcars)
 ```
 
+---
+# This is a comment, set off with --- and started with #.  Comments are good for notes to self that you don't want to show up in the output.  Below is LaTeX code for a page break.
+---
+\pagebreak 
 ## Including Plots
 
-You can also embed plots like this dot-and-whisker plot [see @Solt2015c]:
+You can also embed plots, for example:
 
-```{r dotwhisker_plot, fig.width = 7, fig.height = 4, warning = FALSE, message = FALSE, echo=FALSE}
+```{r dotwhisker_plot, fig.width = 7, fig.height = 4, warning = FALSE, message = FALSE, echo = FALSE, fig.cap="\\label{fig:dotwhisker_plot}Dot-and-Whisker Plot Example"}
 m1 <- lm(mpg ~ wt + cyl + disp + gear, data = mtcars)
 m2 <- update(m1, . ~ . + hp) # add another predictor
 m3 <- update(m2, . ~ . + am) # and another 
@@ -66,7 +71,7 @@ dwplot(list(m1, m2, m3),
            legend.title = element_blank()) 
 ```
 
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+Figure \ref{fig:dotwhisker_plot} is a plot made in the \texttt{dotwhisker} package [@Solt2015c]. Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
 
 ## Citations
 Want to cite something?
