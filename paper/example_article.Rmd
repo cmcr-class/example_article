@@ -71,7 +71,7 @@ dwplot(list(m1, m2, m3),
            legend.title = element_blank()) 
 ```
 
-Figure \ref{fig:dotwhisker_plot} is a plot made in the \texttt{dotwhisker} package [@Solt2015c]. Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+Figure \ref{fig:dotwhisker_plot} is a plot made using the \texttt{dotwhisker} package [@Solt2015c]. Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
 
 ## Citations
 Want to cite something?
