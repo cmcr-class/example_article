@@ -16,7 +16,7 @@ keywords: "these, always seem silly, to me, given google, but regardless"
 date: "`r format(Sys.time(), '%B %d, %Y')`"
 fontsize: 11pt
 spacing: single
-bibliography: \dummy{`r file.path(getwd(), 'example_article')`}
+bibliography: \dummy{`r file.path(getwd(), list.files(getwd(), "bib$"))`}
 biblio-style: apsr
 citecolor: black
 linkcolor: black
